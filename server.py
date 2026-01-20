@@ -65,9 +65,9 @@ def get_movie():
         
         # Check if it's a documentary, TV show, or short
         page_text = r.text.lower()
-        is_documentary = 'documentary' in page_text and ('genre' in page_text or 'genres' in page_text)
-        is_tv = 'tv series' in page_text or 'tv mini series' in page_text or 'tv episode' in page_text
-        is_short = 'short' in page_text and ('genre' in page_text or 'genres' in page_text or 'runtime' in page_text)
+        is_documentary = '"Documentary"' in r.text or 'genre/documentary' in page_text
+        is_tv = 'TV Series' in r.text or 'TV Mini Series' in r.text or 'TV Episode' in r.text
+        is_short = '"Short"' in r.text and ('Runtime' in r.text or 'runtime' in page_text)
         
         # Filter out non-films
         if is_documentary or is_tv or is_short:
